@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Harikrishnan</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="bgCanvas" class="bg-canvas"></canvas>
+
+ <header class="navwrap">
+  <div class="nav-inner">
+    <a class="brand nav-toggle" href="javascript:void(0)">Harikrishnan</a>
+    <nav class="navlinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="page page-contact">
+    <section class="pane">
+      <h1>Contact</h1>
+      <div class="contact-grid">
+        <form class="card contact-form" id="contactForm">
+          <label>Name<input type="text" id="name" required/></label>
+          <label>Email<input type="email" id="email" required/></label>
+          <label>Message<textarea id="message" rows="5" required></textarea></label>
+          <label>Code<textarea id="code" optional></textarea></label>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" id="sbtn" type="submit">Send</button>
+           
+          </div>
+        </form>
+
+       
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© <span id="year"></span> — Built with neon vibes</small>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

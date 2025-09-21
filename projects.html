@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Hub — Harikrishnan</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Extra for code blocks */
+.code-block {
+  position: relative;
+  margin-top: 20px;
+  background: rgba(12,18,40,0.6);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-x: auto;
+}
+.code-block pre {
+  color: var(--text);
+  font-family: monospace;
+  margin:0;
+}
+.rps-show,.ng-show{
+  position: absolute;
+  top:8px;
+  right:60px;
+  padding: 4px 8px;
+  margin-bottom: 100px
+  }  
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 14px;
+  padding: 4px 8px;
+}
+.game-title {
+  margin-top: 30px;
+  font-size: 24px;
+  background: linear-gradient(90deg,var(--neon),var(--accent),var(--pink));
+  -webkit-background-clip:text; color:transparent;
+  text-shadow: 0 0 20px rgba(0,238,255,0.2);
+}
+</style>
+</head>
+<body>
+
+ <canvas id="bgCanvas" class="bg-canvas"></canvas>
+
+ <header class="navwrap">
+  <div class="nav-inner">
+    <a class="brand nav-toggle" href="javascript:void(0)">Harikrishnan</a>
+    <nav class="navlinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page page-about">
+  <section class="pane">
+    <h1 class="neon-title">Projects</h1>
+
+    <!-- Rock Paper Scissors -->
+    <h2 id="rps-t" class="game-title">Rock Paper Scissors</h2>
+    <div class="code-block">
+      <button class="rps-show">Show</button>
+      <button class="btn copy-btn" onclick="copyCode(this)">Copy</button>
+<pre id="rps">
+import random  
+
+choices = {"r": "rock", "p": "paper", "s": "scissors"}
+
+total_pw, total_cw = 0, 0
+
+while True:
+    while True:
+        try:
+            R = int(input("How many rounds do you want to win: "))
+            if R > 0:
+                break
+            else:
+                print("Please enter a positive number!")
+        except ValueError:
+            print("Wrong input! Please enter a number.")
+
+    pw, cw = 0, 0
+    round_num = 1
+    print(f"\n🎯 First to {R} wins!")
+
+    while pw < R and cw < R:
+        print(f"\n--- Round {round_num} ---")
+        player = input("Choose (r)ock, (p)aper, (s)cissors: ").lower()
+        if player not in choices:
+            print("❌ Invalid choice, try again!")
+            continue
+
+        player_choice = choices[player]
+        computer_choice = random.choice(list(choices.values()))
+        print(f"🧑 Player choice: {player_choice}")  
+        print(f"🤖 Computer choice: {computer_choice}")  
+
+        if player_choice == computer_choice:
+            print("⚖️ It's a Tie!")
+        elif (player_choice == "rock" and computer_choice == "scissors") or \
+             (player_choice == "scissors" and computer_choice == "paper") or \
+             (player_choice == "paper" and computer_choice == "rock"):
+            pw += 1
+            print("✅ Player wins this round!")
+        else:
+            cw += 1
+            print("❌ Computer wins this round!")
+
+        print(f"📊 Score ---> Player: {pw}, Computer: {cw}")  
+        round_num += 1
+
+    print("\n" + "="*30)
+    if pw > cw:
+        print("🎉 Player wins the game!")
+        total_pw += 1
+    else:
+        print("🤖 Computer wins the game!")
+        total_cw += 1
+    print("="*30)
+    print(f"🏆 Match Score (All games) ---> Player: {total_pw}, Computer: {total_cw}")
+
+    while True:
+        again = input("\nPlay again? (yes/no): ").strip().lower()
+        if again in ["yes", "y"]:
+            break
+        elif again in ["no", "n"]:
+            print("👋 Thanks for playing!")
+            exit()
+        else:
+            print("❌ Invalid input. Please type yes or no.")
+</pre>
+    </div>
+
+    <!-- Number Guess -->
+    <h2 id="number" class="game-title">Number Guess</h2>
+    <div class="code-block">
+      <button class="ng-show">Show</button>
+      <button class="btn copy-btn" onclick="copyCode(this)">Copy</button>
+<pre id="ng">
+import random
+
+print("🎯 Welcome to the Number Guessing Game!")
+print("Think of a number between 1 and 100, and I will try to guess it.")
+
+low = 1
+high = 100
+attempts = 0
+
+while True:
+    guess = random.randint(low, high)
+    attempts += 1
+    print(f"My guess is: {guess}")
+
+    feedback = input("Is it correct (c), higher (h), or lower (l)? ").lower()
+    if feedback == "c":
+        print(f"🎉 Yay! I guessed your number in {attempts} tries!")
+        break
+    elif feedback == "h":
+        low = guess + 1
+    elif feedback == "l":
+        high = guess - 1
+    else:
+        print("⚠ Please enter only 'c', 'h', or 'l'.")
+</pre>
+    </div>
+
+  </section>
+</main>
+
+<footer class="footer">
+  <small>© <span id="year"></span> Harikrishnan</small>
+</footer>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html> 

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home — Harikrishnan (Neon Portfolio)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- animated canvas (shared) -->
+  <canvas id="bgCanvas" class="bg-canvas"></canvas>
+
+  <!-- sticky navbar -->
+  <header class="navwrap">
+  <div class="nav-inner">
+    <a class="brand nav-toggle" href="javascript:void(0)">Harikrishnan</a>
+    <nav class="navlinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <!-- main -->
+  <main class="page page-home">
+    <section class="hero">
+      <h1 class="neon-title">Hi — I’m <span class="neon-name">Harikrishnan</span></h1>
+      <p class="lead">Student • Python & AI • Web Developer • Tasker Automation</p>
+      <div class="hero-cta">
+        <a class="btn" href="projects.html">Explore Projects</a>
+        <a class="btn ghost" href="about.html">About Me</a>
+      </div>
+
+      <div class="hero-cards">
+        <article class="info-card">
+          <h3>AI Certificate</h3>
+          <p>Python AI Developer — practical projects & ML basics.</p>
+        </article>
+        <article class="info-card">
+          <h3>Tasker Projects</h3>
+          <p>Focus automation, app-limits, smart profiles — real device solutions.</p>
+        </article>
+        <article class="info-card">
+          <h3>Web Apps</h3>
+          <p>Flask + static JS apps, dashboards, and productivity tools.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="showcase">
+      <h2>Featured</h2>
+      <div class="grid">
+        <div class="feature">
+          <h4>Stay Focused (web)</h4>
+          <p>Local web tracker with timers and daily reports. (Demo)</p>
+        </div>
+        <div class="feature">
+          <h4>AI Chatbot</h4>
+          <p>Flask + NLP prototype with JSON knowledge base.</p>
+        </div>
+        <div class="feature">
+          <h4>Tasker Focus Suite</h4>
+          <p>Multi-level Tasker automations — lockdown, schedules.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© <span id="year"></span> Harikrishnan • Royal Blue Neon • Demo site</small>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
