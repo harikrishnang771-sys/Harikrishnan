@@ -232,3 +232,17 @@ if (canvas) {
     if (running) requestAnimationFrame(frame);
   });
 }
+
+  // Run when page finishes loading
+  window.addEventListener("load", function() {
+    // Show popup after 2 seconds
+    setTimeout(() => {
+      document.getElementById("diwaliPopup").classList.add("active");
+    }, 2000);
+
+    // Close button event listener
+    const closeBtn = document.getElementById("closePopupBtn");
+    closeBtn.addEventListener("click", function() {
+      document.getElementById("diwaliPopup").classList.remove("active");
+    });
+  });
