@@ -1,3 +1,4 @@
+        </form>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,33 +10,110 @@
 <body>
   <canvas id="bgCanvas" class="bg-canvas"></canvas>
 
- <header class="navwrap">
-  <div class="nav-inner">
-    <a class="brand nav-toggle" href="javascript:void(0)">☰ Harikrishnan</a>
-    <nav class="navlinks">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
+  <header class="navwrap">
+    <div class="nav-inner">
+      <a class="brand nav-toggle" href="javascript:void(0)">☰ Harikrishnan</a>
+      <nav class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
 
   <main class="page page-contact">
     <section class="pane">
       <h1>Contact</h1>
+
       <div class="contact-grid">
+
+        <!-- Contact form -->
         <form class="card contact-form" id="contactForm">
           <label>Name<input type="text" id="name" required/></label>
           <label>Email<input type="email" id="email" required/></label>
           <label>Message<textarea id="message" rows="5" required></textarea></label>
-          <label>Code<textarea id="code" optional></textarea></label>
+          <label>Code<textarea id="code"></textarea></label>
+
           <div style="display:flex;gap:8px;align-items:center">
             <button class="btn" id="sbtn" type="submit">Send</button>
-           
           </div>
         </form>
 
+
+        <!-- ✅ File upload box added here -->
+        <div class="card upload-box">
+          <h3>Send Me a File</h3>
+          <input type="file" id="fileInput">
+          <button class="btn upload-btn" onclick="uploadFile()">Upload File</button>
+          <p id="status"></p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© <span id="year"></span> — Built with neon vibes</small>
+  </footer>
+
+  <!-- Upload Script -->
+  <script>
+    const uploadURL = "https://script.google.com/macros/s/AKfycbyjqbkr-25D-HHjVWW0hHI5v2mN3XpNsE6YmB493PbSplD2_xmXaD5XhK-pKuLlt9YK4A/exec";
+
+    function uploadFile() {
+      const file = document.getElementById('fileInput').files[0];
+      if (!file) {
+        document.getElementById('status').innerText = "Select a file!";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = e => {
+        const data = {
+          filename: file.name,
+          mimeType: file.type,
+          data: e.target.result.split(",")[1]
+        };
+
+        document.getElementById('status').innerText = "Uploading...";
+
+        fetch(uploadURL, {
+          method: "POST",
+          body: JSON.stringify(data)
+        })
+        .then(() => document.getElementById('status').innerText = "File Sent ✅")
+        .catch(() => document.getElementById('status').innerText = "Upload Failed ❌");
+      }
+
+      reader.readAsDataURL(file);
+    }
+  </script>
+
+  <style>
+    .upload-box {
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      border: 1px solid #444;
+    }
+    .upload-btn {
+      margin-top: 10px;
+      background: #0066ff;
+    }
+    .upload-btn:hover {
+      background: #004ecc;
+    }
+    #status {
+      font-size: 14px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
        
       </div>
     </section>
